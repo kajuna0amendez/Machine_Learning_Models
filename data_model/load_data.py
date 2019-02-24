@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-                                                         
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
 __author__ = "Andres Mendez-Vazquez"
@@ -35,21 +35,22 @@ def create_connection(db_file):
     return None
 
 
-def select_all_tasks(conn):
+def select_all_tasks(conn, name):
     """
     Query all rows in the tasks table
 
     Param:
     -------------------------------------------------------------------
-       param conn: the Connection object
-    
+       conn: the Connection object
+        
+       name: string name for the table
     Return:
     ------------------------------------------------------------------- 
         
     """
     cur = conn.cursor()
-    cur.execute("SELECT * FROM tasks")
+    cur.execute("SELECT * FROM "+name)
 
     rows = cur.fetchall()
 
-    return row
+    return rows
