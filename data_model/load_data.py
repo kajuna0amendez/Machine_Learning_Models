@@ -50,7 +50,8 @@ def select_all_tasks(conn, name):
     """
     cur = conn.cursor()
     cur.execute("SELECT * FROM "+name)
+    name = list(map(lambda x:x[0], cur.description))
 
-    rows = cur.fetchall()
+    rows = list( map( lambda x: list(x), cur.fetchall()))
 
-    return rows
+    return rows, name

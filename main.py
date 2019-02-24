@@ -19,13 +19,15 @@ def main():
     conn = create_connection(database)
     with conn:
         print("2. Query all tasks")
-        rows = select_all_tasks(conn, 'heart_table')
-    return rows
+        rows, name = select_all_tasks(conn, 'heart_table')
+    return rows, name
  
  
 if __name__ == '__main__':
-    rows = main()
+    rows, name = main()
 
     print(rows)
+
+    print(name)
 
 
