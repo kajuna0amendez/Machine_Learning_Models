@@ -10,7 +10,17 @@ __maintainer__ = "Andres Mendez-Vazquez"
 __email =  "kajuna0kajuna@gmail.com"
 __status__ = "Development"
 
-def dframe_t_db():
+import pandas as pd
+import numpy as np
+
+def dframe_t_db(rows, name):
     """
     Assambly all the information from a database
     """
+    # Zip through the indexes
+    cols = np.vstack(rows)
+
+    print(cols.shape)
+    print(len(name))
+
+    return pd.DataFrame(cols, columns = name)

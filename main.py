@@ -11,6 +11,7 @@ __email =  "kajuna0kajuna@gmail.com"
 __status__ = "Development"
 
 from data_model.load_data import create_connection, select_all_tasks
+from tools.data_frames import dframe_t_db
 
 def main():
     database = "/Cython_Code/database/heart.db"
@@ -20,14 +21,12 @@ def main():
     with conn:
         print("2. Query all tasks")
         rows, name = select_all_tasks(conn, 'heart_table')
-    return rows, name
- 
+    return dframe_t_db(rows, name)
  
 if __name__ == '__main__':
-    rows, name = main()
+    df = main()
 
-    print(rows)
+    print(df)
 
-    print(name)
 
 
