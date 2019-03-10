@@ -1,6 +1,8 @@
 # Cython Machine Learning Models
 
-Accelerating the Python Machine Learning Models using Cython and C...
+Accelerating the Python Machine Learning Models using Cython and C. The main purpose of 
+this repository is to design tools of Machine Learning from scratch. From the Linear Lagebra 
+methods to the main Machine Learning techniques...
 
 ## Database Used
 
