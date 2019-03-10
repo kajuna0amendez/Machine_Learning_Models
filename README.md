@@ -1,4 +1,4 @@
-# Cython Machine Learning Models
+# Machine Learning Models
 
 Accelerating the Python Machine Learning Models using Cython and C...
 
