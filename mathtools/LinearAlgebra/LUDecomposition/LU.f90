@@ -1,9 +1,9 @@
 module LUDecomposition
 implicit none 
-
    
   contains
-    subrutine ludcmp_square(A, n, indx)
+    subroutine ludcmp_square(A, n, indx)
+
       ! The LU decomposition
       ! Return the LU decomposition in A after all alpah_ii = 1
       ! Thus Rule 
@@ -23,20 +23,20 @@ implicit none
 
       ! In parameters
       integer, intent(in) :: n
-      real, intent(in), intent(out) :: A(n,n)
+      real, intent(inout) :: A(n,n)
       ! Out Parameters
-      real, intent(out) :: indx(n)
+      integer, intent(out) :: indx(n)
       ! Parameters
-      real, parameter :: TINY = 1.0E-20
+      real, parameter :: TINY = 1.0E-30
 
       ! Internal variables
-      ! Indexado
+      ! Indexing
       integer :: i
       integer :: j
+      integer :: k
       ! max index pivot
       integer :: imax
-      ! Internal k for the Crout's method
-      integer :: k
+      ! Internal variables for the Crout's method
       real :: big
       real :: dum
       real :: sum
@@ -47,6 +47,7 @@ implicit none
       do i = 1, n
         big = 0.0
         do j = 1, n
+          temp = abs(A(i,j)) 
           if (temp > big) then
             big = temp
           end if 
@@ -65,14 +66,16 @@ implicit none
           sum = A(i,j)
           do k = 1, i-1
             sum = sum - A(i,k)*A(k,j)
+          end do 
           A(i,j) = sum
         end do
         ! Start the search for the largest pivot element
         big = 0.0
+        imax = j
         do i = j, n
           sum = A(i,j)
           do k = 1, j-1
-            sum = sum - A(i,j)*A(k,j)
+            sum = sum - A(i,k)*A(k,j)
           end do
           A(i,j) = sum
           dum = vv(i)*abs(sum)
@@ -83,7 +86,7 @@ implicit none
         end do 
         ! Interchage Rows a classic to mantain stability getting 
         ! The Largest absolute value in the choosen pivot
-        if (j != imax) then
+        if (j /= imax) then
           do k = 1, n 
             dum = A(imax,k)
             A(imax,k) = A(j,k)
@@ -96,10 +99,10 @@ implicit none
         ! Solving some issues with zero pivots
         !
         if (A(j,j) == 0) then
-          A(j,j) == TINY
+          A(j,j) = TINY
         end if
         ! Divide by the pivot element.
-        if (j != n) then
+        if (j /= n) then
           dum = 1.0/A(j,j)
           do i = j+1, n
             A(i,j) = A(i,j)*dum ! Division 
