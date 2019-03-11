@@ -5,7 +5,7 @@ We implemented these routines in Fortran given their capabilities for numerical 
 
 Here is an implementation using Crout’s algorithm, then for storage it returns 
 the LU stored in the original matrix and indx the permutations done for getting
-the decomposition.
+the decomposition. And although the result is a permutation matrix of the original one,  it can be recovered by using the indx vector in a backward fashion.
 
 ## Backward and Fordward procedures 
 
