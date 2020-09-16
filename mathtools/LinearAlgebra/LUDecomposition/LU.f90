@@ -18,7 +18,7 @@ implicit none
       ! 5.- Loop over the betas and look if you have a new max pivote
       ! 6.- Move the max row pivote upwards
       ! 7.- Use TINY number if division by zero arises 
-      ! 8.- Dibide by pivote element
+      ! 8.- Divide by pivote element
 
 
       ! In parameters
